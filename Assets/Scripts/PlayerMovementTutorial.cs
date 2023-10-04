@@ -46,9 +46,9 @@ public class PlayerMovementTutorial : MonoBehaviour
     private void Update()
     {
         // ground check
-       grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.3f, whatIsGround);
-        
-        //grounded = Physics.Raycast(transform.position + new Vector3(0, 0.05f, 0), Vector3.down, playerHeight * 0.5f + 0.3f, whatIsGround);
+        //grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.3f, whatIsGround);
+
+        grounded = Physics.Raycast(transform.position + new Vector3(0, 0.05f, 0), Vector3.down, playerHeight * 0.5f + 0.3f, whatIsGround);
 
         MyInput();
         SpeedControl();
@@ -71,7 +71,7 @@ public class PlayerMovementTutorial : MonoBehaviour
         verticalInput = Input.GetAxisRaw("Vertical");
 
         // when to jump
-        if(Input.GetKey(jumpKey) && readyToJump && grounded)
+        if (Input.GetKey(jumpKey) && readyToJump && grounded)
         {
             readyToJump = false;
 
@@ -86,16 +86,17 @@ public class PlayerMovementTutorial : MonoBehaviour
         // calculate movement direction
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
 
-        Debug.Log(verticalInput);
-        Debug.Log(horizontalInput);
-
         // on ground
-        if(grounded)
+        if (grounded)
+        {
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
+        }
 
         // in air
-        else if(!grounded)
+        else if (!grounded)
+        {
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force);
+        }
     }
 
     private void SpeedControl()
@@ -103,7 +104,7 @@ public class PlayerMovementTutorial : MonoBehaviour
         Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 
         // limit velocity if needed
-        if(flatVel.magnitude > moveSpeed)
+        if (flatVel.magnitude > moveSpeed)
         {
             Vector3 limitedVel = flatVel.normalized * moveSpeed;
             rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);

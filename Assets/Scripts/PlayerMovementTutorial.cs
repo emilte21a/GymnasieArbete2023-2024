@@ -5,6 +5,9 @@ using TMPro;
 
 public class PlayerMovementTutorial : MonoBehaviour
 {
+
+    public Animator canAnim;
+
     [Header("Movement")]
     public float moveSpeed;
 
@@ -50,6 +53,8 @@ public class PlayerMovementTutorial : MonoBehaviour
 
         grounded = Physics.Raycast(transform.position + new Vector3(0, 0.05f, 0), Vector3.down, playerHeight * 0.5f + 0.3f, whatIsGround);
 
+
+
         MyInput();
         SpeedControl();
 
@@ -85,7 +90,7 @@ public class PlayerMovementTutorial : MonoBehaviour
     {
         // calculate movement direction
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
-
+        
         // on ground
         if (grounded)
         {

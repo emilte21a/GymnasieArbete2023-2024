@@ -127,4 +127,11 @@ public class PlayerMovementTutorial : MonoBehaviour
     {
         readyToJump = true;
     }
+
+    private void OnCollisionEnter(Collision other) {
+        if (other.gameObject.CompareTag("Monster"))
+        {
+            
+        }
+    }
 }

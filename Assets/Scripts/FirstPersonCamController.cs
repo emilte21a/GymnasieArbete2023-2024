@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class FirstPersonCamController : MonoBehaviour
 {
+    [Header("Sensitivity")]
     public float sensX;
     public float sensY;
 

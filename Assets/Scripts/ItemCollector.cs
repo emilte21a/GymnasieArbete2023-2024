@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
@@ -14,6 +15,8 @@ public class ItemCollector : MonoBehaviour
 
     private string textValue;
 
+    public SceneManagerController sceneManager;
+
     public AudioSource source;
 
     [Header("Text and image")]
@@ -21,12 +24,16 @@ public class ItemCollector : MonoBehaviour
 
     public RawImage pickedUpRelics;
 
+    public Text gatherTheRelics;
+
 
     Dictionary<string, GameObject> itemsInInventory;
 
     bool isIntersecting;
 
     public Canvas canvas;
+
+    private int items = 0;
 
 
     [Header("Image positions")]
@@ -45,6 +52,8 @@ public class ItemCollector : MonoBehaviour
 
     List<GameObject> checkMarks;
 
+    bool isOnFinish = false;
+
     //private Dictionary<GameObject, Vector2> imagePositionInHud;
 
     private void Start()
@@ -52,19 +61,22 @@ public class ItemCollector : MonoBehaviour
         pickedUpRelics.enabled = false;
         pickupTextElement.text = textValue;
         itemsInInventory = new Dictionary<string, GameObject>();
-        
+
         checkMarks = new();
 
     }
-
+    
     private void Update()
     {
+        gatherTheRelics.CrossFadeAlpha(0, 2, false);
+
         pickupTextElement.text = textValue;
         if (isIntersecting)
         {
             textValue = "press F to pick up item";
             if (Input.GetKeyDown(KeyCode.F))
             {
+                items++;
                 itemsInInventory.Clear();
                 AddItemToInventory(currentItemName, currentItemObject);
                 source.Play();
@@ -94,6 +106,14 @@ public class ItemCollector : MonoBehaviour
                 item.SetActive(false);
             }
         }
+
+        if (isOnFinish)
+        {
+            if (items == 6 && Input.GetKeyDown(KeyCode.F))
+            {
+                sceneManager.LoadScene("YouWon");
+            }
+        }
     }
 
     private void AddItemToInventory(string item, GameObject gameObject)
@@ -109,6 +129,22 @@ public class ItemCollector : MonoBehaviour
             isIntersecting = true;
             currentItemName = other.gameObject.name;
             currentItemObject = other.gameObject;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("finish"))
+        {
+            isOnFinish = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("finish"))
+        {
+            isOnFinish = false;
         }
     }
 

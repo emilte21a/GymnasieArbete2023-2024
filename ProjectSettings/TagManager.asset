@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Relic
   - Monster
+  - finish
   layers:
   - Default
   - TransparentFX

@@ -8,6 +8,8 @@ public class PlayerMovementTutorial : MonoBehaviour
 
     public Animator canAnim;
 
+    public SceneManagerController sceneManager;
+
     [Header("Movement")]
     public float moveSpeed;
 
@@ -90,7 +92,7 @@ public class PlayerMovementTutorial : MonoBehaviour
     {
         // calculate movement direction
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
-        
+
         // on ground
         if (grounded)
         {
@@ -128,10 +130,11 @@ public class PlayerMovementTutorial : MonoBehaviour
         readyToJump = true;
     }
 
-    private void OnCollisionEnter(Collision other) {
+    private void OnTriggerEnter(Collider other)
+    {
         if (other.gameObject.CompareTag("Monster"))
         {
-            
+            sceneManager.LoadScene("GameOver");
         }
     }
 }

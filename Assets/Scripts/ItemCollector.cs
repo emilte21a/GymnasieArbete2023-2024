@@ -14,6 +14,8 @@ public class ItemCollector : MonoBehaviour
 
     private string textValue;
 
+    public AudioSource source;
+
     [Header("Text and image")]
     public Text pickupTextElement;
 
@@ -65,6 +67,7 @@ public class ItemCollector : MonoBehaviour
             {
                 itemsInInventory.Clear();
                 AddItemToInventory(currentItemName, currentItemObject);
+                source.Play();
                 AddCheckMark();
                 Destroy(currentItemObject);
                 isIntersecting = false;

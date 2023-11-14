@@ -65,7 +65,7 @@ public class ItemCollector : MonoBehaviour
         checkMarks = new();
 
     }
-    
+
     private void Update()
     {
         gatherTheRelics.CrossFadeAlpha(0, 2, false);
@@ -137,6 +137,14 @@ public class ItemCollector : MonoBehaviour
         if (other.gameObject.CompareTag("finish"))
         {
             isOnFinish = true;
+            if (items != 6)
+            {
+                textValue = "You have not gathered all the relics needed!";
+            }
+            else
+            {
+                textValue = "Press F to start the ritual!";
+            }
         }
     }
 
@@ -145,6 +153,7 @@ public class ItemCollector : MonoBehaviour
         if (other.gameObject.CompareTag("finish"))
         {
             isOnFinish = false;
+            textValue = "";
         }
     }
 

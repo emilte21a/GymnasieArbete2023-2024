@@ -12,6 +12,8 @@ public class EnemyScript : MonoBehaviour
 
     public Animator animator;
 
+    public ItemCollector item;
+
     Ray ray;
 
     RaycastHit hit;
@@ -54,8 +56,13 @@ public class EnemyScript : MonoBehaviour
         if (shouldMove)
             pos = Vector3.MoveTowards(transform.position, rayShooter.position, speed * Time.deltaTime);
 
+        else if(shouldMove && item.items == 6)
+            pos = Vector3.MoveTowards(transform.position, rayShooter.position, speed*4 * Time.deltaTime);
+
         else
             pos = transform.position;
+
+        
 
         rb.MovePosition(pos);
 

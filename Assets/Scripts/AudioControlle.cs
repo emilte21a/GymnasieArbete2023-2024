@@ -8,6 +8,8 @@ public class AudioControlle : MonoBehaviour
     public Transform monsterPosition;
     public AudioSource audioSource;
 
+    public ItemCollector item;
+
     
 
     float distance;
@@ -27,12 +29,10 @@ public class AudioControlle : MonoBehaviour
             audioSource.Play();
         }
 
-        if (isWithinDistance && distance > 40f)
+        else if (isWithinDistance && distance > 40f)
         {
             isWithinDistance = false;
             audioSource.Stop();
         }
-
-        //}
     }
 }

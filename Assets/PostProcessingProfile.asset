@@ -115,7 +115,7 @@ MonoBehaviour:
     value: 10.92
   aperture:
     overrideState: 1
-    value: 5
+    value: 0.1
   focalLength:
     overrideState: 1
     value: 92
@@ -1557,10 +1557,10 @@ MonoBehaviour:
     value: {x: 50, y: 95}
   minLuminance:
     overrideState: 1
-    value: -0.5
+    value: -0.2
   maxLuminance:
     overrideState: 1
-    value: 0.7
+    value: 1.7
   keyValue:
     overrideState: 1
     value: 1

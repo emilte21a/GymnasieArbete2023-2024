@@ -9,6 +9,8 @@ using UnityEngine.UI;
 
 public class ItemCollector : MonoBehaviour
 {
+
+    
     string currentItemName;
 
     GameObject currentItemObject;
@@ -33,7 +35,7 @@ public class ItemCollector : MonoBehaviour
 
     public Canvas canvas;
 
-    private int items = 0;
+    public int items = 0;
 
 
     [Header("Image positions")]

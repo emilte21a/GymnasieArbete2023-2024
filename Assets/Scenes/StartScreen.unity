@@ -24712,8 +24712,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: "- Find the 6 relics scattered throughout the map\n\n- Relics shimmer with
     a red light \n\n- Listen closely for a sparkling sound\n\n- Follow the compass
-    to the ritual place in order to\n  initate the ritual\n\n- Watch out for the
-    alternate roaming the woods. \n  He is after you. You will know when he's close"
+    to the ritual place in order to\n  initiate the ritual\n\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 15110910e673d6b4fad514e4273f0169, type: 2}
   m_sharedMaterial: {fileID: 810203214321378482, guid: 15110910e673d6b4fad514e4273f0169, type: 2}
